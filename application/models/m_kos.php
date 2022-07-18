@@ -9,6 +9,20 @@ class m_kos extends CI_Model {
 		return $result;
 	}
 
+	public function getMax($column)
+	{
+		$this->db->select_max($column);
+        $result = $this->db->get('kos');
+		return $result;
+	}
+
+	public function getmin($column)
+	{
+		$this->db->select_min($column);
+        $result = $this->db->get('kos');
+		return $result;
+	}
+
 	public function getKosById($id)
 	{
 		$result = $this->db->get_where('kos', array('id' => $id));

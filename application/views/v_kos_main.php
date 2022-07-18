@@ -28,8 +28,8 @@ $this->load->view('v_main/header');
           </tr>
         </thead>
         <tbody>
-        <?php $j = 0;
-        foreach ($kos as $data) { ?>
+        <?php
+        foreach ($kos as $j => $data) { ?>
           <tr>
             <td><?php echo $j+1 ?></td>
 
@@ -43,7 +43,7 @@ $this->load->view('v_main/header');
             <td><a href="<?php echo site_url('kos/edit/'.$data->id); ?>"> Edit </a></td>
             <td><a href="<?php //echo site_url('kos/delete/'.$data->id); ?>"> Hapus </a></td>
           </tr>
-          <?php $j+=1;
+          <?php
         } ?>
         </tbody>
       </table>
