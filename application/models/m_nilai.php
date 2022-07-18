@@ -21,6 +21,44 @@ class m_nilai extends CI_Model {
 		return $result;
 	}
 
+	public function getNilaiSAW()
+	{
+        $result = $this->db->query('SELECT
+		N.id id
+		, A.id AS alternatif_id
+		, A.nama AS alternatif_nama
+		, id_kriteria AS kriteria_id
+		, C.nama AS kriteria_nama
+		, C.jenis AS kriteria_jenis
+		, C.bobot AS kriteria_bobot
+		, N.nilai
+		, IF(c.jenis = "Benefit", (SELECT MAX(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria), (SELECT MIN(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria)) AS minmax
+		, ROUND( IF(c.jenis = "Benefit", N.nilai/(SELECT MAX(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria), (SELECT MIN(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria)/N.nilai) ,2) AS nilai_normal
+		, ROUND( (C.bobot * IF(c.jenis = "Benefit", N.nilai/(SELECT MAX(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria), (SELECT MIN(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria)/N.nilai)) / (SELECT sum(bobot) FROM kriteria) ,2) AS nilai_bobot
+	  FROM nilai N
+		Left JOIN alternatif A ON N.id_alternatif = A.id
+		Left JOIN kriteria C ON N.id_kriteria = C.id
+	  ORDER BY id_alternatif, id_kriteria;
+      ');
+		return $result;
+	}
+
+	public function getNilaiRangking()
+	{
+        $result = $this->db->query('SELECT
+		N.id id
+		, A.id AS alternatif_id
+		, A.nama AS alternatif_nama
+		, ROUND( SUM( (C.bobot * IF(c.jenis = "Benefit", N.nilai/(SELECT MAX(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria), (SELECT MIN(nilai) FROM nilai WHERE id_kriteria = N.id_kriteria)/N.nilai)) / (SELECT sum(bobot) FROM kriteria) ) , 2) AS total_bobot
+	  FROM nilai N
+		Left JOIN alternatif A ON N.id_alternatif = A.id
+		Left JOIN kriteria C ON N.id_kriteria = C.id
+	  GROUP BY id_alternatif
+	  ORDER BY total_bobot DESC;
+      ');
+		return $result;
+	}
+
 	public function getNilaiMinMax()
 	{
         $result = $this->db->query('SELECT

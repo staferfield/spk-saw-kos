@@ -14,7 +14,8 @@ class saw extends CI_Controller{
         $data['kriteria'] = $this->m_kriteria->getKriteria()->result();
         $data['nilai'] = $this->m_nilai->getNilai()->result();
 
-        $data['minmax'] = $this->m_nilai->getNilaiMinMax()->result();
+        $data['saw'] = $this->m_nilai->getNilaiSAW()->result();
+        $data['ranking'] = $this->m_nilai->getNilaiRangking()->result();
 
         $this->load->view('v_saw', $data);
     }
