@@ -21,6 +21,7 @@ $this->load->view('v_main/header');
             <th>Bobot</th>
             <th>Skala Maksimal</th>
             <th>Ubah</th>
+            <th>Hapus</th>
           </tr>
         </thead>
         <tbody>
@@ -36,6 +37,7 @@ $this->load->view('v_main/header');
             <td><?= $data->max ?></td>
 
             <td><a href="<?php echo site_url('kriteria/edit/'.$data->id); ?>"> Edit </a></td>
+            <td><a href="<?php echo site_url('kriteria/delete/'.$data->id); ?>"> Hapus </a></td>
           </tr>
           <?php $j+=1;
         } ?>
@@ -45,6 +47,7 @@ $this->load->view('v_main/header');
   </div>
 </div>
 
+<a href="<?php echo site_url('kriteria/add/'); ?>"><button>Tambah Kriteria</button></a>
 
 
 

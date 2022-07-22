@@ -18,7 +18,26 @@ class m_nilai extends CI_Model {
         Left JOIN kriteria C ON N.id_kriteria = C.id
       ORDER BY id_alternatif, id_kriteria;
       ");
-		return $result;
+		return $result->result();
+	}
+
+	public function getNilaiByAlternatifId($id)
+	{
+        $result = $this->db->query("SELECT
+        N.id id
+        , A.id AS alternatif_id
+        , A.nama AS alternatif_nama
+        , id_kriteria AS kriteria_id
+        , C.nama AS kriteria_nama
+        , C.bobot AS kriteria_bobot
+        , N.nilai
+      FROM nilai N
+        Left JOIN alternatif A ON N.id_alternatif = A.id
+        Left JOIN kriteria C ON N.id_kriteria = C.id
+		WHERE id_alternatif = $id
+  	    ORDER BY id_alternatif, id_kriteria;
+      ");
+		return $result->result();
 	}
 
 	public function getNilaiSAW()
@@ -40,7 +59,7 @@ class m_nilai extends CI_Model {
 		Left JOIN kriteria C ON N.id_kriteria = C.id
 	  ORDER BY id_alternatif, id_kriteria;
       ');
-		return $result;
+		return $result->result();
 	}
 
 	public function getNilaiRangking()
@@ -56,7 +75,7 @@ class m_nilai extends CI_Model {
 	  GROUP BY id_alternatif
 	  ORDER BY total_bobot DESC;
       ');
-		return $result;
+		return $result->result();
 	}
 
 	public function getNilaiMinMax()
@@ -70,13 +89,13 @@ class m_nilai extends CI_Model {
 	  FROM kriteria
 	  ORDER BY id;
       ');
-		return $result;
+		return $result->result();
 	}
 
 	public function getNilaiById($id)
 	{
-		$result = $this->db->get_where('nilai', array('id' => $id));
-		return $result;
+		$result = $this->db->get_where('nilai', array('alternatif_id' => $id));
+		return $result->result();
 	}
 
 	public function insertNilai($nilai)
@@ -85,7 +104,7 @@ class m_nilai extends CI_Model {
 
 		$insert_id = $this->db->insert_id();
 		$result = $this->db->get_where('nilai', array('id' => $insert_id));
-		return $result;
+		return $result->result();
 	}
 
 	public function updateNilai($nilai, $id)
@@ -94,7 +113,17 @@ class m_nilai extends CI_Model {
 		$this->db->update('nilai', $nilai);
 
 		$result = $this->db->get_where('nilai', array('id' => $id));
-		return $result;
+		return $result->result();
+	}
+
+	public function updateNilaiByAlternatifKriteria($nilai, $id_alternatif, $id_kriteria)
+	{
+		$this->db->where('id_alternatif', $id_alternatif);
+		$this->db->where('id_kriteria', $id_kriteria);
+		$this->db->update('nilai', $nilai);
+
+		$result = $this->db->get_where('nilai', array('id_alternatif' => $id_alternatif, 'id_kriteria' => $id_kriteria));
+		return $result->result();
 	}
 
 	public function deleteNilai($id)
@@ -104,7 +133,7 @@ class m_nilai extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete('nilai');
 
-		return $result;
+		return $result->result();
 	}
 
 }

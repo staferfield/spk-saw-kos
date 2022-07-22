@@ -7,3 +7,9 @@
     <title>Document</title>
 </head>
 <body>
+
+<a href="<?php echo site_url('alternatif') ?>">Alternatif</a>
+<a href="<?php echo site_url('kriteria') ?>">Kriteria</a>
+<a href="<?php echo site_url('saw') ?>">Hitung SAW</a>
+
+<br>

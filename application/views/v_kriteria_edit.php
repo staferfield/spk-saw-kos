@@ -10,23 +10,28 @@ $this->load->view('v_main/header');
           <input type="hidden" name="id" required="required" value="<?= $kriteria->id ?>" />
 
             <p>Nama Kriteria</p>
-            <input type="text" name="nama" placeholder="Nama" required="required" value="<?= $kriteria->nama ?>" maxlength="50" />
+            <input type="text" name="nama" placeholder="Nama" required="required" value="<?= $kriteria->nama ?>" maxlength="30" />
 
             <p>Keterangan</p>
-            <input type="text" name="keterangan" required="required" value="<?= $kriteria->keterangan ?>" />
+            <textarea name="keterangan" rows="10" cols="30"  maxlength="100" ><?= $kriteria->keterangan ?></textarea>
 
             <p>Jenis</p>
+            <p>Pilih "Benefit" apabila semakin tinggi nilainya semakin baik. Sebaliknya, pilih "Cost" apabila semakin rendah nilainya semakin baik.</p>
             <input type="text" name="jenis" required="required" value="<?= $kriteria->jenis ?>" />
+            <select name="jenis">
+              <option value="Benefit" <?php if($kriteria->jenis == "Benefit"){echo 'selected="selected"';} ?>>Benefit</option>
+              <option value="Cost" <?php if($kriteria->jenis == "Cost"){echo 'selected="selected"';} ?>>Cost</option>
+            </select>
 
             <p>Bobot</p>
-            <input type="number" name="bobot" required="required" value="<?= $kriteria->bobot ?>" min="0" />
+            <input type="number" name="bobot" required="required" value="<?= $kriteria->bobot ?>" min="0" max="999"/>
 
             <p>Skala Maksimal</p>
-            <input type="number" name="max" required="required" value="<?= $kriteria->max ?>"  min="0" />
+            <input type="number" name="max" required="required" value="<?= $kriteria->max ?>"  min="0"  max="99999999999"/>
 
 
             <button id="submit" type="submit" class="btn btn-success btn-block">Simpan</button>
-            <!-- <button id="cancel" type="cancel" class="btn btn-success btn-block">Batal</button> -->
+            <a href="<?php echo site_url('kriteria') ?>"><button id="cancel" type="button" class="btn btn-success btn-block">Batal</button></a>
 
           </form>
 

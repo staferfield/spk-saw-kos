@@ -6,21 +6,14 @@ class m_alternatif extends CI_Model {
     public function getAlternatif()
 	{
         $result = $this->db->get('alternatif');
-		return $result;
-	}
-
-	public function getAlternatifMinMax($column)
-	{
-		$this->db->select_max($column);
-        $result = $this->db->get('alternatif');
-		return $result;
+		return $result->result();
 	}
 
 
 	public function getAlternatifById($id)
 	{
 		$result = $this->db->get_where('alternatif', array('id' => $id));
-		return $result;
+		return $result->row();
 	}
 
 	public function insertAlternatif($alternatif)
@@ -29,7 +22,7 @@ class m_alternatif extends CI_Model {
 
 		$insert_id = $this->db->insert_id();
 		$result = $this->db->get_where('alternatif', array('id' => $insert_id));
-		return $result;
+		return $result->row();
 	}
 
 	public function updateAlternatif($alternatif, $id)
@@ -38,7 +31,7 @@ class m_alternatif extends CI_Model {
 		$this->db->update('alternatif', $alternatif);
 
 		$result = $this->db->get_where('alternatif', array('id' => $id));
-		return $result;
+		return $result->row();
 	}
 
 	public function deleteAlternatif($id)
@@ -48,7 +41,7 @@ class m_alternatif extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete('alternatif');
 
-		return $result;
+		return $result->row();
 	}
 
 }

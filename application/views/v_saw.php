@@ -4,9 +4,6 @@ $this->load->view('v_main/header');
 
 
 
-
-
-
 <h3>Data Awal</h3>
 <table class="table table-bordered table-striped">
         <thead>
@@ -153,4 +150,5 @@ $this->load->view('v_main/header');
   </tbody>
 </table>
 
-
+<h3>Kesimpulan</h3>
+<p>Jadi dapat disimpulkan bahwa Kos yang terpilih menggunakan metode SAW adalah <b><?= $ranking[0]->alternatif_nama ?></b> dengan nilai bobot sebesar <b><?= $ranking[0]->total_bobot ?></b>.</p>

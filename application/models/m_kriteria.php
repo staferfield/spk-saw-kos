@@ -6,13 +6,13 @@ class m_kriteria extends CI_Model {
     public function getKriteria()
 	{
         $result = $this->db->get('kriteria');
-		return $result;
+		return $result->result();
 	}
 
 	public function getKriteriaById($id)
 	{
 		$result = $this->db->get_where('kriteria', array('id' => $id));
-		return $result;
+		return $result->row();
 	}
 
 	public function insertKriteria($data)
@@ -21,7 +21,7 @@ class m_kriteria extends CI_Model {
 
 		$insert_id = $this->db->insert_id();
 		$result = $this->db->get_where('kriteria', array('id' => $insert_id));
-		return $result;
+		return $result->row();
 	}
 
 	public function updateKriteria($data, $id)
@@ -30,7 +30,7 @@ class m_kriteria extends CI_Model {
 		$this->db->update('kriteria', $data);
 
 		$result = $this->db->get_where('kriteria', array('id' => $id));
-		return $result;
+		return $result->row();
 	}
 
 	public function deleteKriteria($id)
@@ -40,7 +40,7 @@ class m_kriteria extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete('kriteria');
 
-		return $result;
+		return $result->row();
 	}
 }
 ?>
