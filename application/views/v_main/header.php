@@ -15,7 +15,6 @@
         body{
             font-size: 14px;
         }
-
     </style>
 
 </head>
@@ -29,22 +28,22 @@
           <i class="bi bi-postage me-3" style="font-size: 2rem;"></i> <h3 class="m-0">ESPEKA KOS</h3>
           </a>
 
-          <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+          <ul class="nav col-12 col-lg-auto justify-content-center my-md-0 text-center">
             <li>
-              <a href="<?php echo site_url('alternatif') ?>" class="nav-link text-white">
-              <span class="bi d-block mx-auto text-center"> <i class="bi bi-clipboard-data-fill" style="font-size: 1.5rem;"></i> </span>
+              <a href="<?php echo site_url('alternatif') ?>" class="nav-link text-reset">
+              <span class="d-block mx-auto"> <i class="bi bi-clipboard-data-fill" style="font-size: 1.5rem;"></i> </span>
                 Alternatif
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('kriteria') ?>" class="nav-link text-white">
-              <span class="bi d-block mx-auto text-center"> <i class="bi bi-sliders fs-4"></i> </span>
+              <a href="<?php echo site_url('kriteria') ?>" class="nav-link text-reset">
+              <span class="d-block mx-auto"> <i class="bi bi-sliders" style="font-size: 1.5rem;"></i> </span>
                 Kriteria
               </a>
             </li>
             <li>
-              <a href="<?php echo site_url('saw') ?>" class="nav-link text-white">
-              <span class="bi d-block mx-auto text-center"> <i class="bi bi-calculator-fill fs-4"></i> </span>
+              <a href="<?php echo site_url('saw') ?>" class="nav-link text-reset">
+              <span class="d-block mx-auto"> <i class="bi bi-calculator-fill" style="font-size: 1.5rem;"></i> </span>
                 SAW
               </a>
             </li>
