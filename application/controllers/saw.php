@@ -17,7 +17,7 @@ class saw extends CI_Controller{
         $data['saw'] = $this->m_nilai->getNilaiSAW();
         $data['ranking'] = $this->m_nilai->getNilaiRangking();
 
-        $this->load->view('v_saw', $data);
+        $this->template->load('main', 'v_saw', $data);
     }
 
 

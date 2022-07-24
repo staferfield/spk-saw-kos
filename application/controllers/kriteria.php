@@ -10,17 +10,17 @@ class kriteria extends CI_Controller{
 
     public function index() {
         $data['kriteria'] = $this->m_kriteria->getKriteria();
-        $this->load->view('v_kriteria_main', $data);
+        $this->template->load('main', 'v_kriteria_main', $data);
     }
 
     public function add(){
         $data['kriteria'] = $this->m_kriteria->getKriteria();
-        $this->load->view('v_kriteria_add', $data);
+        $this->template->load('main', 'v_kriteria_add', $data);
     }
 
     public function edit($id){
         $data['kriteria'] = $this->m_kriteria->getKriteriaById($id);
-        $this->load->view('v_kriteria_edit', $data);
+        $this->template->load('main', 'v_kriteria_edit', $data);
     }
 
     public function addAction(){

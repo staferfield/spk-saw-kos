@@ -12,19 +12,19 @@ class alternatif extends CI_Controller{
         $data['alternatif'] = $this->m_alternatif->getAlternatif();
         $data['nilai'] = $this->m_nilai->getNilai();
         $data['kriteria'] = $this->m_kriteria->getKriteria();
-        $this->load->view('v_alternatif_main', $data);
+        $this->template->load('main', 'v_alternatif_main', $data);
     }
 
     public function add(){
         $data['kriteria'] = $this->m_kriteria->getKriteria();
-        $this->load->view('v_alternatif_add', $data);
+        $this->template->load('main', 'v_alternatif_add', $data);
     }
 
     public function edit($id){
         $data['alternatif'] = $this->m_alternatif->getAlternatifById($id);
         $data['nilai'] = $this->m_nilai->getNilaiByAlternatifId($id);
         $data['kriteria'] = $this->m_kriteria->getKriteria();
-        $this->load->view('v_alternatif_edit', $data);
+        $this->template->load('main', 'v_alternatif_edit', $data);
     }
 
     public function addAction(){
