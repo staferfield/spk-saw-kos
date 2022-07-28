@@ -115,9 +115,14 @@
                 <?php if ($data->alternatif_id == $alt->id) {
                 ?>
                   <td><?= $data->nilai_bobot ?></td>
-                <?php }; ?>
+                <?php } ?>
               <?php } ?>
-              <td><?= $ranking[$index]->total_bobot ?></td>
+              <?php foreach ($ranking as $x => $data) { ?>
+                <?php if ($alt->id == $data->alternatif_id) {
+                ?>
+                  <td><?= $data->total_bobot ?></td>
+                <?php break;}; ?>
+              <?php } ?>
             </tr>
           <?php
             // }
